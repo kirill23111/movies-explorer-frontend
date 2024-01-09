@@ -1,0 +1,12 @@
+.headerInfo__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.headerInfo__image {
+    background: url(../../images/headerInfo.svg) center no-repeat;
+    width: 38px;
+    height: 38px;
+    border-radius: 38px;
+}
