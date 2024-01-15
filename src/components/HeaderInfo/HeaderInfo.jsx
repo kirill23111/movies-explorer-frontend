@@ -3,14 +3,12 @@ import './HeaderInfo.css';
 import { Link } from 'react-router-dom';
 
 function HeaderInfo() {
-  return (
-    <Link className='hover-btn' to='/profile'>
-      <div className='headerInfo__container hover-btn'>
-        Аккаунт 
+  return <Link className='hover-btn' to='/profile'>
+    <div className='headerInfo__container'>
+      <p className='headerInfo__container-text'>Аккаунт</p>      
       <div className='headerInfo__image'></div>
-      </div>
-    </Link>
-  );
+    </div>
+  </Link>
 }
 
 export default HeaderInfo;

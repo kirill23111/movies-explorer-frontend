@@ -1,4 +1,4 @@
-.login {
+.register {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -11,20 +11,32 @@
     height: 100vh;
 }
 
-.login__container {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    align-items: left;
-}
-
 .register__container-start {
     display: flex;
     flex-direction: column;
     gap: 40px;
 }
 
-.login__container-header {
+.register__container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: left;
+}
+
+.register__container-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.login__container-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.register__container-header {
     margin: 0;
     color: #FFF;
     font-size: 24px;
@@ -33,13 +45,13 @@
     line-height: normal;
 }
 
-.login__container-box {
+.register__container-box {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.login__container-box-text {
+.register__container-box-text {
     margin: 0;
     color: #8B8B8B;
     font-size: 10px;
@@ -48,7 +60,7 @@
     line-height: normal;
 }
 
-.login__container-box-input {
+.register__container-box-input {
     background: none;
     border: none;
     border-bottom: solid 1px #424242;
@@ -56,11 +68,11 @@
     color: white;
 }
 
-.login__container-box-input:focus {
+.register__container-box-input:focus {
     outline: none;
 }
 
-.login__container-box-input::placeholder {
+.register__container-box-input::placeholder {
     color: #FFF;
     font-size: 14px;
     font-style: normal;
@@ -68,7 +80,7 @@
     line-height: normal;
 }
 
-.login__container-button-block {
+.register__container-button-block {
     margin-top: 181px;
     display: flex;
     flex-direction: column;
@@ -77,8 +89,9 @@
     justify-content: center;
 }
 
-.login__container-button-button {
+.register__container-button-button {
     border-radius: 3px;
+    background-color: 4285F4;
     width: 396px;
     justify-content: center;
     align-items: center;
@@ -86,7 +99,7 @@
     background-color: #4285F4;
 }
 
-.login__container-button-text {
+.register__container-button-text {
     margin: 0;
     color: #FFF;
     text-align: center;
@@ -96,13 +109,13 @@
     line-height: normal;
 }
 
-.login__container-question-block {
+.register__container-question-block {
     display: flex;
     flex-direction: row;
     gap: 6px;
 }
 
-.login__container-button-question {
+.register__container-button-question {
     margin: 0;
     color: #8B8B8B;
     text-align: center;
@@ -112,7 +125,7 @@
     line-height: normal;
 }
 
-.login__container-button-login {
+.register__container-button-register {
     margin: 0;
     color: #4285F4;
     text-align: center;
@@ -121,44 +134,28 @@
     font-weight: 400;
     line-height: normal;
 }
-
-.login__container-links {
-    text-decoration: none;
-    color: white;
-}
-
-.login__container-button-register {
-    margin: 0;
-    color: #4285F4;
-    text-align: center;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
 
 @media screen and (max-width: 767px) {
-    .login {
+    .register {
         padding: 70px 0px;
         width: 100%;
         align-items: center;
     }
 
-    .login__container {
+    .register__container {
         gap: 80px;
         align-items: center;
         width: calc(100% - 60px);
     }
 
-    .login__container-box {
+    .register__container-box {
         display: flex;
         flex-direction: column;
         width: 100%;
         gap: 5px;
     }
 
-    .login__container-input-container {
+    .register__container-input-container {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -166,7 +163,7 @@
         width: 100%;
     }
 
-    .login__container-box-input {
+    .register__container-box-input {
         background: none;
         border: none;
         border-bottom: solid 1px #424242;
@@ -175,19 +172,19 @@
         border-radius: 0;
     }
 
-    .login__container-header {
+    .register__container-header {
         font-family: 'Inter-Medium';
         line-height: 29.05px;
     }
 
-    .login__container-start {
+    .register__container-start {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 50px;
     }
 
-    .login__container-button-block {
+    .register__container-button-block {
         margin-top: 100px;
         display: flex;
         flex-direction: column;
@@ -197,7 +194,7 @@
         width: 100%;
     }
 
-    .login__container-button-button {
+    .register__container-button-button {
         border-radius: 3px;
         background-color: #4285F4;
         width: 100%;
@@ -206,36 +203,20 @@
         padding: 15px 0px;
     }
 
-    .login__container-button-text {
+    .register__container-button-text {
         font-size: 12px;
         line-height: 14.52px;
     }
 
-    .login__container-question-block {
+    .register__container-question-block {
         display: flex;
         flex-direction: row;
         gap: 6px;
     }
 
-    .login__container-links {
-        text-decoration: none;
-        color: white;
-        width: 100%;
-    }
-
-    .login__container-button-register {
+    .register__container-button-question {
         font-size: 12px;
         line-height: 14.52px;
     }
 
-    .login__container-button-question {
-        font-size: 12px;
-        line-height: 14.52px;
-    }
-
-    .login__container-question-block {
-        display: flex;
-        flex-direction: row;
-        gap: 7px;
-    }
 }

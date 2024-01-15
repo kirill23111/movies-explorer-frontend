@@ -4,15 +4,213 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 74px;
-    max-width: 100%;
+    height: 74px;
+    width: 100%;
     box-sizing: border-box;
     color: #FFFFFF;
     background-color: #073042;
+    font-family: 'Inter-Medium';
+    position: fixed;
+    z-index: 100;
+    top: 0;
 }
 
-@media screen and (max-width: 804px) {
+.header__loggedIn {
+    background-color: #202020;
+    padding: 18px 0;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    width: calc(100% - 140px);
+}
+
+.header__loggedIn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header__loggedIn-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 44px;
+}
+
+.header__container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 44px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__container_authBlock {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+}
+
+.header__container_singUpText {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.header__container_singUpText:hover {
+    cursor: pointer;
+}
+
+.header__container_singInText {
+    font-size: 12px;
+    line-height: 16px;
+    color: #000;
+    margin: 0;
+}
+
+.header__container_signInButton {
+    background-color: #2BE080;
+    border-radius: 3px;
+    padding: 8px 20px;
+}
+
+.header__container_signInButton:hover {
+    cursor: pointer;
+}
+
+.header__container-link {
+    text-decoration: none;
+    color: white;
+}
+
+
+@media screen and (max-width: 767px) {
     .header {
-        padding: 0 30px;
+        padding: 0 14px;
+    }
+
+    .header__loggedIn {
+        width: calc(100% - 28px);
+    }
+
+    .drawer-background {
+        display: none;
+    }
+
+    .drawer {
+        height: 100vh;
+        width: 100%;
+        background-color: #202020;
+        padding: 144px 0 0 0;
+        position: fixed;
+        top: 0;
+        z-index: 100;
+        overflow-y: none;
+    }
+
+    .drawer-box-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .drawer__link {
+        color: #FFFFFF;
+        text-decoration: none;
+        font-family: 'Inter-Medium';
+        font-size: 18px;
+        line-height: 21.78px;
+        font-weight: 500;
+    }
+
+    .drawer__link-active {
+        color: #FFFFFF;
+        text-decoration: underline;
+        font-family: 'Inter-Medium';
+        font-size: 18px;
+        line-height: 21.78px;
+        font-weight: 500;
+    }
+
+    .drawer-closebutton {
+        position: absolute;
+        top: 13px;
+        right: 13px;
+    }
+
+    .headerInfo__container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 250px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+    .header__loggedIn {
+        width: calc(100% - 60px);
+    }
+
+    .drawer {
+        height: 100vh;
+        width: 60%;
+        background-color: #202020;
+        padding: 144px 0 0 0;
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 100;
+        overflow-y: none;
+    }
+    .drawer-background {
+        width: 40%;
+        background-color: #000;
+        opacity: 0.3;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+    }
+
+    .drawer-box-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .drawer__link {
+        color: #FFFFFF;
+        text-decoration: none;
+        font-family: 'Inter-Medium';
+        font-size: 18px;
+        line-height: 21.78px;
+        font-weight: 500;
+    }
+
+    .drawer__link-active {
+        color: #FFFFFF;
+        text-decoration: underline;
+        font-family: 'Inter-Medium';
+        font-size: 18px;
+        line-height: 21.78px;
+        font-weight: 500;
+    }
+
+    .drawer-closebutton {
+        position: absolute;
+        top: 13px;
+        right: 13px;
+    }
+    .headerInfo__container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 350px;
     }
 }

@@ -5,9 +5,9 @@ import './Promo.css';
 function Promo() {
     return (
         <section className='promo'>
-            <h1 className='promo__title'>
+            <p className='promo__title'>
                 Учебный проект студента факультета Веб-разработки.
-            </h1>
+            </p>
             <img src={promoImage} alt='Картинка' className='promo__image' />
         </section>
     );

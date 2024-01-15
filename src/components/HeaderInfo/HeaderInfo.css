@@ -10,3 +10,23 @@
     height: 38px;
     border-radius: 38px;
 }
+
+.headerInfo__container {
+    display: flex;
+    flex-direction: row;
+    gap: 7px;
+}
+
+.headerInfo__container-text {
+    margin: 0;
+    color: #FFF;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 12px;
+}
+
+.hover-btn {
+    text-decoration: none;
+}
