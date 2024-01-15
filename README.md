@@ -1,2 +1,2 @@
 # movies-explorer-frontend
-dark-1
+Figma theme - dark-1
