@@ -101,7 +101,8 @@
     font-style: normal;
     font-weight: 500;
     line-height: 18px;
-    font-family: 'Inter-Medium';
+    font-family: 'Inter-Medium', Arial, sans-serif;
+
 }
 
 .movies__container_filter-line {
@@ -184,7 +185,8 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    font-family: 'Inter-Medium';
+    font-family: 'Inter-Medium', Arial, sans-serif;
+
 }
 
 .movies__container_films-title-box {
@@ -233,7 +235,8 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    font-family: 'Inter-Medium';
+    font-family: 'Inter-Medium', Arial, sans-serif;
+
 }
 
 

@@ -132,7 +132,8 @@
     }
 
     .profile__container-header {
-        font-family: 'Inter-Medium';
+        font-family: 'Inter-Medium', Arial, sans-serif;
+
     }
 
     .profile__container-box-text {

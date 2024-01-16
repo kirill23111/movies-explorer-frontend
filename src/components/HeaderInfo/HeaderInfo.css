@@ -1,23 +1,24 @@
-.headerInfo__container {
+.header-info__container {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.headerInfo__image {
+.header-info__image {
     background: url(../../images/headerInfo.svg) center no-repeat;
     width: 38px;
     height: 38px;
     border-radius: 38px;
 }
 
-.headerInfo__container {
+.header-info__container {
     display: flex;
     flex-direction: row;
+    padding-top: 250px;
     gap: 7px;
 }
 
-.headerInfo__container-text {
+.header-info__container-text {
     margin: 0;
     color: #FFF;
     font-feature-settings: 'clig' off, 'liga' off;

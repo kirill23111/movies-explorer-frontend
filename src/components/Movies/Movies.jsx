@@ -64,7 +64,7 @@ export function Movies() {
             <div className='movies__container_films-first'>
                 {data.map((x, i) => (detect ? (i < 2) : (i < 4)) && <div className='movies__container_films-container'>
                     <div className='movies__container_films-container-data' >
-                        <img src={require(`../../images/${i + 1}.png`)} alt='' />
+                        <img src={require(`../../images/${i + 1}.png`)} alt='Фильм' />
                         <div className='movies__container_films-title-box' >
                             <p className='movies__container_films-container-title' >{x.title}</p>
                             {[1].includes(i + 1) ? <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,7 +85,7 @@ export function Movies() {
             <div className='movies__container_films'>
                 {data.map((x, i) => (detect ? (i > 1 && i < 4) : (i > 3 && i < 8)) && <div className='movies__container_films-container'>
                     <div className='movies__container_films-container-data' >
-                        <img src={require(`../../images/${i + 1}.png`)} alt='' />
+                        <img src={require(`../../images/${i + 1}.png`)} alt='Фильм' />
                         <div className='movies__container_films-title-box' >
                             <p className='movies__container_films-container-title' >{x.title}</p>
                             {[5, 6].includes(i + 1) ? <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -106,7 +106,7 @@ export function Movies() {
             <div className='movies__container_films'>
                 {data.map((x, i) => (detect ? (i > 3 && i < 6) : (i > 7 && i < 12)) && <div className='movies__container_films-container'>
                     <div className='movies__container_films-container-data' >
-                        <img src={require(`../../images/${i + 1}.png`)} alt='' />
+                        <img src={require(`../../images/${i + 1}.png`)} alt='Фильм' />
                         <div className='movies__container_films-title-box' >
                             <p className='movies__container_films-container-title' >{x.title}</p>
                             {[9].includes(i + 1) ? <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -127,7 +127,7 @@ export function Movies() {
             <div className='movies__container_films'>
                 {data.map((x, i) => (detect ? (i > 5 && i < 8) : (i > 11 && i < 16)) && <div className='movies__container_films-container'>
                     <div className='movies__container_films-container-data' >
-                        <img src={require(`../../images/${i + 1}.png`)} alt='' />
+                        <img src={require(`../../images/${i + 1}.png`)} alt='Фильм' />
                         <div className='movies__container_films-title-box' >
                             <p className='movies__container_films-container-title' >{x.title}</p>
                             {[16].includes(i + 1) ? <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

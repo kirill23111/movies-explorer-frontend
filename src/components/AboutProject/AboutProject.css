@@ -65,7 +65,7 @@
   margin: 0;
 }
 
-.about-project__timeline-containter {
+.about-project__timeline-con {
   margin-top: 110px;
   display: flex;
   flex-direction: column;
@@ -143,7 +143,7 @@
   line-height: 17px;
   height: 100%;
   padding: 14px;
-  font-family: 'Inter-Medium';
+  font-family: 'Inter-Medium', Arial, sans-serif;
 }
 
 
@@ -163,11 +163,11 @@
     gap: 28px;
   }
 
-  .about-project__title {
+  /* .about-project__title {
     font-size: 18px;
     line-height: 21.78px;
     letter-spacing: -4%;
-  }
+  } */
 
   .about-project__stage-container {
     display: flex;
@@ -194,7 +194,7 @@
     line-height: 16px;
   }
 
-  .about-project__timeline-containter {
+  .about-project__timeline-con{
     margin-top: 60px;
   }
 

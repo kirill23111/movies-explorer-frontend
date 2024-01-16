@@ -37,33 +37,33 @@ function Header({ isLoggedIn }) {
         {createNavLink('/saved-movies', 'Сохранённые фильмы')}
       </div>
       <Link className='hover-btn' to='/profile' onClick={() => setIsPopupOpened(false)} >
-        <div className='headerInfo__container'>
-          <p className='headerInfo__container-text'>Аккаунт</p>
-          <div className='headerInfo__image'></div>
+        <div className='header-info__container'>
+          <p className='header-info__container-text'>Аккаунт</p>
+          <div className='header-info__image'></div>
         </div>
       </Link>
     </div>)
     : isLoggedIn ? (
-      <div className='header__loggedIn'>
-        <div className='header__loggedIn-container'>
-          <div className='header__loggedIn-links' >
+      <div className='header__logged-in'>
+        <div className='header__logged-in-container'>
+          <div className='header__logged-in-links' >
             {isPopupOpened && window.innerWidth < 804 ? '' : <HeaderLogo />}
             {isMobileScreen ? '' : <NavTab />}
           </div>
-          {isMobileScreen ? <img src={require('../../images/burgerButton.svg').default} alt='' onClick={() => setIsPopupOpened(true)} /> : <HeaderInfo />}
+          {isMobileScreen ? <img src={require('../../images/burgerButton.svg').default} alt='Кнопка' onClick={() => setIsPopupOpened(true)} /> : <HeaderInfo />}
         </div>
       </div>
     ) : (
       <header className='header'>
         <div className='header__container'>
           <HeaderLogo />
-          <div className='header__container_authBlock'>
+          <div className='header__container_auth-block'>
             <Link to='/signup' className='header__container-link'>
-              <p className='header__container_singUpText'>Регистрация</p>
+              <p className='header__container_sing-up-text'>Регистрация</p>
             </Link>
             <Link to='/signin' className='header__container-link' >
-              <div className='header__container_signInButton'>
-                <p className='header__container_singInText'>Войти</p>
+              <div className='header__container_sign-in-button'>
+                <p className='header__container_sing-in-text'>Войти</p>
               </div>
             </Link>
           </div>

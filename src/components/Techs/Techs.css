@@ -14,6 +14,9 @@
     display: flex;
     flex-direction: column;
     gap: 23px;
+    border-bottom: 1px solid gray;
+    padding-bottom: 20px;
+    width: 100%;
 }
 
 .techs__title {
@@ -106,13 +109,14 @@
 
     .techs__title-container {
         gap: 28px;
+        margin-right: auto;
     }
 
-    .techs__title {
+    /* .techs__title {
         font-size: 18px;
         line-height: 21.78px;
         letter-spacing: -4%;
-    }
+    } */
 
     .techs__container {
         gap: 24px;
@@ -140,7 +144,7 @@
         margin-top: -10px;
     }
 
-    .techs__stacks-both-boxAlone {
+    .techs__stacks-both-box-alone {
         width: 100%;
         justify-content: left;
         align-items: left;

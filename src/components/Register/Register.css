@@ -173,7 +173,8 @@
     }
 
     .register__container-header {
-        font-family: 'Inter-Medium';
+        font-family: 'Inter-Medium', Arial, sans-serif;
+
         line-height: 29.05px;
     }
 

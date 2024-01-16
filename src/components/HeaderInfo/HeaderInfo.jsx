@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 function HeaderInfo() {
   return <Link className='hover-btn' to='/profile'>
-    <div className='headerInfo__container'>
-      <p className='headerInfo__container-text'>Аккаунт</p>      
-      <div className='headerInfo__image'></div>
+    <div className='header-info__container'>
+      <p className='header-info__container-text'>Аккаунт</p>      
+      <div className='header-info__image'></div>
     </div>
   </Link>
 }

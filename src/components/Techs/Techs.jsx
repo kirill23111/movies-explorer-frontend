@@ -8,7 +8,7 @@ function Techs() {
                 <p className='techs__title'>
                     Технологии
                 </p>
-                <div className='techs__divider' />
+                {/* <div className='techs__divider' /> */}
             </div>
             <div className='techs__container'>
                 <p className='techs__container-header'>7 технологий</p>
@@ -39,7 +39,7 @@ function Techs() {
                         <p className='techs__stacks-text'>Express.js</p>
                     </div>
                 </div>
-                <div className='techs__stacks-both-boxAlone'>
+                <div className='techs__stacks-both-box-alone'>
                     <div className='techs__stacks-box'>
                         <p className='techs__stacks-text'>mongoDB</p>
                     </div>

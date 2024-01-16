@@ -32,7 +32,7 @@ function ProjectDetails() {
           </div>
         </div>
       </div>
-      <div className='about-project__timeline-containter'>
+      <div className='about-project__timeline-con'>
         <div className='about-project__timeline'>
           <div className='about-project__timeline-item1'>
             <p className='about-project__timeline-item1-text'>
