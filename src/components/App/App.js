@@ -52,10 +52,6 @@ function App() {
 
   useEffect(() => {
     window.addEventListener("beforeunload", saveData);
-
-    // Здесь не нужно очищать listener, так как beforeunload вызывается перед закрытием страницы
-    // Если мы попробуем очистить будет баг
-    // return window.removeEventListener("beforeunload", saveData);
   }, [saveData]);
 
   useEffect(() => {

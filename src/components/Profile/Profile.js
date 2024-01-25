@@ -95,7 +95,6 @@ function Profile({ onUpdateUser, errorAuth, handleSignout }) {
             <div
               type="submit"
               className="profile__container-button-logout"
-              // Кнопка блочится если поля не валидны
               disabled={!isValid || !isChanged}
               name="submit_btn"
               value="Сохранить"
