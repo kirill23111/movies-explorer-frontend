@@ -1,0 +1,116 @@
+.headerAuthorised {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.headerAuthorised__logo {
+  width: 38px;
+  margin: 18px 70px;
+}
+
+.headerAuthorised__container {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.headerAuthorised__button {
+  margin: 21px 70px 21px 343px;
+  background-image: url(../../images/profile.svg);
+  border: none;
+  width: 100px;
+  height: 32px;
+  background-size: 100%;
+  background-color: transparent;
+}
+
+.headerAuthorised__link {
+  margin: 0;
+  opacity: 1;
+  text-decoration: none;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  color: white;
+}
+
+.headerAuthorised__container-middle {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  align-items: center;
+}
+
+.headerAuthorised_blue {
+  background-color: #202020;
+}
+
+.headerAuthorised_blue .headerAuthorised__link {
+  color: #fff;
+}
+
+.headerAuthorised__link-active {
+  font-weight: 500;
+}
+
+.headerAuthorised_white {
+  background-color: #202020;
+}
+
+.headerAuthorised__nav-mobile {
+  display: none;
+}
+
+.headerAuthorised__logo:hover {
+  opacity: 0.5;
+}
+
+.headerAuthorised__nav-mobile:hover {
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 900px) {
+  .headerAuthorised__button {
+    margin: 21px 30px 21px 200px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .headerAuthorised__logo {
+    margin: 18px 30px;
+  }
+
+  .headerAuthorised__container-middle {
+    display: none;
+  }
+
+  .headerAuthorised__nav-mobile {
+    display: block;
+    background-color: transparent;
+    border: none;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .headerAuthorised__logo {
+    margin: 18px 14px;
+  }
+
+  .headerAuthorised__nav-mobile {
+    margin: 0;
+  }
+}
+
+.headerAuthorised__button:hover {
+  opacity: 0.7;
+}
+
+.headerAuthorised__link:hover {
+  font-weight: 500;
+}
