@@ -6,6 +6,7 @@ function Techs() {
     <div className="techs">
       <div className="techs__title-container">
         <p className="techs__title">Технологии</p>
+        {/* <div className='techs__divider' /> */}
       </div>
       <div className="techs__container">
         <p className="techs__container-header">7 технологий</p>

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./ErrorPage.css";
 
-function PageNotFound() {
+export default function ErrorPage() {
   return (
     <div className="error">
       <div className="error-container">
@@ -14,5 +14,3 @@ function PageNotFound() {
     </div>
   );
 }
-
-export default PageNotFound;

@@ -13,14 +13,23 @@ function SearchForm({
   const [errors, setErrors] = React.useState({});
   const [val, setVal] = React.useState("");
 
+  // React.useEffect(() => {
+  //   if (search) {
+  //     setVal(search);
+  //   }
+  // }, [search]);
+
   React.useEffect(() => {
-    if (search) {
-      setVal(search);
-    }
-  }, [search]);
+    (async () => {
+      if (localStorage.getItem("search")) {
+        await handleFormSubmit();
+        setSearch(JSON.parse(localStorage.getItem("search")));
+      }
+    })();
+  }, []);
 
   const handleFormSubmit = async (evt) => {
-    evt.preventDefault();
+    evt?.preventDefault();
     if (!savedMovies?.length) {
       await handleGetSavedMovies();
       if (handleGetMovies) await handleGetMovies();
@@ -72,9 +81,7 @@ function SearchForm({
             <p className="movies__container_filter-button-text">Найти</p>
           </p>
           <div className="movies__container_filter-line" />
-          <div className="movies__container_filter-box">
-            {children}
-          </div>
+          <div className="movies__container_filter-box">{children}</div>
         </div>
       </div>
     </div>

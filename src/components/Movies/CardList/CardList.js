@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
+import Preloader from "../Preloader/Preloader";
 import "./CardList.css";
 import MoviesAddition from "../MoviesAddition/MoviesAddition";
 import useWindowSize from "../../../hooks/useWindowSize";
@@ -17,6 +18,8 @@ function CardList({
   onDeleteMovie,
   savedMovies,
   cardProps,
+  isLoading,
+  isSearchEmtpy,
   handleGetSavedMovies,
   showMoreBtn = true,
 }) {
@@ -34,7 +37,7 @@ function CardList({
     } else if (width <= COMPUTER_DISPAY && width > 950) {
       setCount(COUNT_FOR_TABLET);
       setAddNextMovies(3);
-    } else if (width <= 950 && width > 750) {
+    } else if (width <= 950 && width > 768) {
       setCount(8);
       setAddNextMovies(2);
     } else if (width <= TABLET_DISPAY) {
@@ -51,10 +54,11 @@ function CardList({
     showCountMovies();
     setCount(count + addNextMovies);
   }
-
+  // console.log(isSearchEmtpy)
   return (
     <section className="moviesList">
       <div className="movies__container_films-table">
+        <Preloader isLoading={isLoading} />
         {moviesToShow?.map((movie) => {
           return (
             <MoviesCard
@@ -69,7 +73,7 @@ function CardList({
             />
           );
         })}
-        {!moviesToShow?.length && (
+        {!isSearchEmtpy && !isLoading && !moviesToShow?.length && (
           <p className="nothing-found">Ничего не найдено</p>
         )}
       </div>

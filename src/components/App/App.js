@@ -149,7 +149,7 @@ function App() {
         if (err === "Error: 409") {
           setErrorAuth("Пользователь с таким email уже существует.");
         } else if (err === "Error: 400") {
-          setErrorAuth("При обновлении профиля произошла Error.");
+          setErrorAuth("При обновлении профиля произошла ошибка.");
         } else if (err === "Error: 500") {
           setErrorAuth("На сервере произошла Error.");
         }
@@ -159,21 +159,29 @@ function App() {
       });
   }
 
+  const handleSetFoundMovies = (movies) => {
+    const foundUserMovies = movies.filter((movie) => {
+      return movie.nameRU.toLowerCase().includes(search.toLowerCase());
+    });
+    if (foundUserMovies.length) {
+      setFoundMovies(foundUserMovies);
+    } else {
+      setFoundMovies(null);
+      setAllMovies(allMovies);
+    }
+  };
+
   function handleGetMovies() {
+    if (allMovies?.length) {
+      return handleSetFoundMovies(allMovies);
+    }
+
     setIsLoading(true);
     return api
       .getAllMovies()
       .then((res) => {
         setAllMovies(res);
-        const foundUserMovies = res.filter((movie) => {
-          return movie.nameRU.toLowerCase().includes(search.toLowerCase());
-        });
-        if (foundUserMovies.length) {
-          setFoundMovies(foundUserMovies);
-        } else {
-          setFoundMovies(null);
-          setAllMovies(allMovies);
-        }
+        handleSetFoundMovies(res);
       })
       .catch((err) => {
         console.log(err);
@@ -266,7 +274,6 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App-page">
         <Header loggedIn={loggedIn} />
-        <Preloader isLoading={isLoading} />
         <Routes>
           <Route
             path="/sign-up"

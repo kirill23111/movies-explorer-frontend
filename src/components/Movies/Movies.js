@@ -56,6 +56,7 @@ function Movies({
       ></FilterCheckbox>
       <CardList
         moviesList={movies}
+        isSearchEmtpy={isSearchEmtpy}
         onMovieLike={onMovieLike}
         isLoading={isLoading}
         isChecked={isChecked}
