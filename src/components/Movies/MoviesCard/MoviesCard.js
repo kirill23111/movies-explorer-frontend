@@ -16,7 +16,7 @@ function MoviesCard({
   const savedUserMovie = savedMovies?.find((i) => i.nameRU === movie.nameRU);
   const hours = Math.floor(movie.duration / HOUR);
   const minutes = Math.floor(movie.duration % HOUR);
-
+  console.log(savedMovies)
   useEffect(() => {
     if (savedUserMovie) {
       setIsLikeMovie(true);

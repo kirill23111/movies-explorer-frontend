@@ -43,6 +43,7 @@ function SavedMovies({
         savedMovies={savedMovies}
       ></FilterCheckbox>
       <CardList
+        savedMovies={savedMovies}
         moviesList={filteredMoviesList}
         isSearchEmtpy={isSearchEmpty}
         onMovieLike={onMovieLike}

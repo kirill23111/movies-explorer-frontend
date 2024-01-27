@@ -13,17 +13,12 @@ function SearchForm({
   const [errors, setErrors] = React.useState({});
   const [val, setVal] = React.useState("");
 
-  // React.useEffect(() => {
-  //   if (search) {
-  //     setVal(search);
-  //   }
-  // }, [search]);
-
   React.useEffect(() => {
     (async () => {
       if (localStorage.getItem("search")) {
         await handleFormSubmit();
         setSearch(JSON.parse(localStorage.getItem("search")));
+        setVal(JSON.parse(localStorage.getItem("search")));
       }
     })();
   }, []);
