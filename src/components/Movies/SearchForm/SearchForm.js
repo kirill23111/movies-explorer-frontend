@@ -10,7 +10,7 @@ function SearchForm({
   handleGetMovies,
   savedMovies,
 }) {
-  const [errors, setErrors] = React.useState({});
+  const [errors, setErrors] = React.useState("");
   const [val, setVal] = React.useState("");
 
   React.useEffect(() => {
@@ -25,20 +25,23 @@ function SearchForm({
 
   const handleFormSubmit = async (evt) => {
     evt?.preventDefault();
+
     if (!savedMovies?.length) {
       await handleGetSavedMovies();
       if (handleGetMovies) await handleGetMovies();
       setSearch(val);
     } else {
+      if (!val) {
+        setErrors("Поле пустое");
+        return;
+      }
+      setErrors("");
       setSearch(val);
     }
   };
 
   const handleInputChange = (evt) => {
-    const target = evt.target;
-    const name = target.name;
     setVal(evt.target.value);
-    setErrors({ ...errors, [name]: target.validationMessage });
   };
 
   return (
@@ -68,6 +71,7 @@ function SearchForm({
             onChange={handleInputChange}
           />
         </div>
+
         <div className="movies__container_filter">
           <p
             onClick={handleFormSubmit}
@@ -79,6 +83,7 @@ function SearchForm({
           <div className="movies__container_filter-box">{children}</div>
         </div>
       </div>
+      <p className="movies__input-error">{errors}</p>
     </div>
   );
 }

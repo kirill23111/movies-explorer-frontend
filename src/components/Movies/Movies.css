@@ -183,6 +183,17 @@
   max-width: 100%;
 }
 
+.movies__liked {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: url(../../images/liked-bg.svg), #313131;
+}
+
+.movies__liked:hover {
+  background: url(../../images/close.svg) 24px 24px, #313131;
+}
+
 .movies__container_films-container-title {
   margin: 0;
   color: #fff;
@@ -220,6 +231,12 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.movies__input-error {
+  font-size: 20px;
+  color: #ff3055;
+  margin-right: auto;
 }
 
 .movies__container-more {

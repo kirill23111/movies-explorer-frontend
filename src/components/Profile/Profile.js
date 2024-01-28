@@ -13,6 +13,8 @@ function Profile({ onUpdateUser, errorAuth, handleSignout }) {
   const isChanged =
     values.name !== currentUser.name || values.email !== currentUser.email;
 
+  console.log(values, currentUser, isChanged);
+
   React.useEffect(() => {
     if (currentUser) {
       resetForm(currentUser, {}, true);
@@ -80,9 +82,7 @@ function Profile({ onUpdateUser, errorAuth, handleSignout }) {
             </span>
           </div>
         </form>
-        <span className="login__error">
-          {errorAuth}
-        </span>
+        <span className="login__error">{errorAuth}</span>
         <div className="profile__container-button-block">
           <div
             className="profile__container-button-change"
@@ -91,7 +91,7 @@ function Profile({ onUpdateUser, errorAuth, handleSignout }) {
             Редактировать
           </div>
           {isDisabled && (
-            <div
+            <button
               type="submit"
               className="profile__container-button-logout"
               // Кнопка блочится если поля не валидны
@@ -101,7 +101,7 @@ function Profile({ onUpdateUser, errorAuth, handleSignout }) {
               onClick={handleSubmit}
             >
               Сохранить
-            </div>
+            </button>
           )}
           <div
             className="profile__container-button-logout"
