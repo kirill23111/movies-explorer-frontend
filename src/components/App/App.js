@@ -351,7 +351,7 @@ function App() {
               />
             }
           />
-          <Route path="*" element={<ErrorPage />} />
+          <Route path="/errorpage" element={<ErrorPage />} />
         </Routes>
         <Footer />
         <PopupWithMessage
