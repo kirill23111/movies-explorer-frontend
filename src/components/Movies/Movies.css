@@ -187,11 +187,11 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: url(../../images/liked-bg.svg), #313131;
+  background: url(../../images/close.svg) center/ 15px 15px no-repeat, #313131;
+  /* background: url(../../images/liked-bg.svg), #313131; */
 }
 
 .movies__liked:hover {
-  background: url(../../images/close.svg) 24px 24px, #313131;
 }
 
 .movies__container_films-container-title {

@@ -1,16 +1,17 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./ErrorPage.css";
 
 export default function ErrorPage() {
+  const navigate = useNavigate();
   return (
     <div className="error">
       <div className="error-container">
         <p className="error-code">404</p>
         <p className="error-text">Страница не найдена</p>
       </div>
-      <Link to="/" style={{ textDecoration: "none" }}>
+      <a onClick={() => navigate(-1)} style={{ textDecoration: "none" }}>
         <p className="error-button">Назад</p>
-      </Link>
+      </a>
     </div>
   );
 }

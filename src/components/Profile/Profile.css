@@ -112,6 +112,10 @@
   line-height: normal;
 }
 
+.profile__container-button-logout:disabled {
+  color: gray;
+}
+
 @media screen and (max-width: 767px) {
   .profile {
     padding: 147px 0 40px 0;

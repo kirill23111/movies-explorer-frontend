@@ -5,10 +5,12 @@ import { DURATION_SHORT_MOVIE } from "../../utils/constants";
 
 import "../SavedMovies/SavedMovies.css";
 
-const filterMovieList = (list, value) =>
-  list.filter((movie) =>
+const filterMovieList = (list, value) => {
+  if (!value) return list;
+  return list.filter((movie) =>
     movie.nameRU.toLowerCase().includes(value.toLowerCase())
   );
+};
 
 const getShortMovies = (list) =>
   list.filter((movie) => movie.duration <= DURATION_SHORT_MOVIE);
@@ -25,12 +27,12 @@ function SavedMovies({
   const [isCheckedQuery, setIsCheckedQuery] = useState(false);
   const [searchSavedMovie, setSearchSavedMovie] = useState("");
 
-  const isSearchEmpty = !searchSavedMovie;
+  const isSearchEmpty = !searchSavedMovie.trim();
 
-  const moviesList = isSearchEmpty ? [] : savedMovies;
+  const moviesList = savedMovies || [];
   const filteredMoviesList = isCheckedQuery
-    ? filterMovieList(getShortMovies(moviesList), searchSavedMovie)
-    : filterMovieList(moviesList, searchSavedMovie);
+    ? filterMovieList(getShortMovies(moviesList), searchSavedMovie.trim())
+    : filterMovieList(moviesList, searchSavedMovie.trim());
 
   return (
     <main className="movies">

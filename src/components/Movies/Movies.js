@@ -3,6 +3,7 @@ import CardList from "../Movies/CardList/CardList";
 import { DURATION_SHORT_MOVIE } from "../../utils/constants";
 
 import "../Movies/Movies.css";
+import { useEffect } from "react";
 
 const getShortMovies = (movies) => {
   return movies?.filter((movie) => {
@@ -33,7 +34,7 @@ function Movies({
   firstSearch,
   handleGetMovies,
 }) {
-  const isSearchEmtpy = !search;
+  const isSearchEmtpy = !search.trim();
   const moviesList = allMovies
     ? isChecked
       ? filterMovies(getShortMovies(allMovies), search)
@@ -41,6 +42,15 @@ function Movies({
     : null;
   const movies = isSearchEmtpy ? [] : moviesList;
 
+  useEffect(() => {
+    if (!allMovies?.length) handleGetMovies();
+
+    return () => {
+      setSearch("");
+    };
+  }, []);
+
+  // console.log({search, movies, allMovies})
   return (
     <main className="movies">
       <FilterCheckbox

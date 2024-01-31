@@ -70,7 +70,7 @@ function App() {
         }
       })
       .catch((err) => {
-        if (err === "Error: 401") {
+        if (err === "Error: 409") {
           setErrorAuth("Вы ввели неправильный логин или пароль.");
         } else if (err === "Error: 400") {
           setErrorAuth("При авторизации произошла Error");
@@ -171,6 +171,28 @@ function App() {
     }
   };
 
+
+  useEffect(() => {
+    handleGetUserMovies();
+    handleGetMovies(); // Вызываем handleGetMovies для инициализации фильмов на основе сохраненного поиска
+  }, [loggedIn]);
+
+  function handleGetUserMovies() {
+    const searchUserMovies = localStorage.getItem("search");
+    if (searchUserMovies) {
+      const searchMovies = JSON.parse(searchUserMovies);
+      setSearch(searchMovies);
+    }
+
+    const checkedMovies = localStorage.getItem("isChecked");
+    if (checkedMovies) {
+      const checkedUserMovies = JSON.parse(checkedMovies);
+      setIsChecked(checkedUserMovies);
+    }
+  }
+
+
+
   function handleGetMovies() {
     if (allMovies?.length) {
       return handleSetFoundMovies(allMovies);
@@ -266,6 +288,9 @@ function App() {
   function handleSignout() {
     setLoggedIn(false);
     setCurrentUser({});
+    setAllMovies([]);
+    setShortMovies(null);
+    setSavedMovies(null);
     localStorage.clear();
     navigate("/");
   }
@@ -351,7 +376,7 @@ function App() {
               />
             }
           />
-          <Route path="/errorpage" element={<ErrorPage />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
         <Footer />
         <PopupWithMessage

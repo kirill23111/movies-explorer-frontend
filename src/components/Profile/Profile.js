@@ -13,8 +13,6 @@ function Profile({ onUpdateUser, errorAuth, handleSignout }) {
   const isChanged =
     values.name !== currentUser.name || values.email !== currentUser.email;
 
-  console.log(values, currentUser, isChanged);
-
   React.useEffect(() => {
     if (currentUser) {
       resetForm(currentUser, {}, true);
@@ -23,7 +21,6 @@ function Profile({ onUpdateUser, errorAuth, handleSignout }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("submit");
     onUpdateUser({ name: values.name, email: values.email });
   }
 
