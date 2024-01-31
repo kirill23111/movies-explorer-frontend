@@ -1,9 +1,9 @@
 // import React from "react";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useState } from "react";
 
 import "../SearchForm/SearchForm.css";
 import { useLocation } from "react-router-dom";
-import {useFormWithValidation} from '../../../hooks/useForm';
+import { useFormWithValidation } from '../../../hooks/useForm';
 
 function SearchForm({
   search,
@@ -13,25 +13,28 @@ function SearchForm({
   handleGetMovies,
   savedMovies,
 }) {
-  const {  resetForm } = useFormWithValidation();
+  const { resetForm } = useFormWithValidation();
   const location = useLocation();
   const [errors, setErrors] = React.useState("");
-  const [val, setVal] = React.useState(" ");
+  const [val, setVal] = React.useState("");
   const firstInput = useRef(null);
+  const [state, setState] = React.useState(false);
+
 
   React.useEffect(() => {
+    if (localStorage.getItem("search") !== "") setState(true);
     (async () => {
       if (localStorage.getItem("search")) {
         if (location.pathname === "/movies") {
           setSearch(JSON.parse(localStorage.getItem("search")));
           setVal(JSON.parse(localStorage.getItem("search")));
         }
-        setTimeout(() => {
-          handleFormSubmit();
-        }, 100);
       }
+      setTimeout(() => {
+        handleFormSubmit();
+      }, 100);
     })();
-  }, []);
+  }, [location, setSearch]);
 
   const handleFormSubmit = async (evt) => {
     evt?.preventDefault();
@@ -40,8 +43,12 @@ function SearchForm({
       await handleGetSavedMovies();
       if (handleGetMovies) await handleGetMovies();
       setErrors("");
-      // Проверка на пустое значение
-      if (!val.trim()) {
+      // Проверка на пустое значение 
+      if (!state) {
+        setErrors("");
+        return;
+      }     
+      if (val === "" || val === " ") {        
         setErrors("Нужно ввести ключевое слово");
         return;
       }
@@ -58,12 +65,13 @@ function SearchForm({
 
       setErrors("");  // Сброс ошибки
 
-      if (val !== " ") {
+      if (val !== "") {
         setSearch(val);
         localStorage.setItem("search", JSON.stringify(val));
       } else {
         if (location.pathname === "/movies") {
-          setSearch(JSON.parse(localStorage.getItem("search")) || " ");
+          setSearch(JSON.parse(localStorage.getItem("search")) || "");
+          setErrors("Нужно ввести ключевое слово");
         }
       }
     }
@@ -75,7 +83,7 @@ function SearchForm({
     resetForm(
       localStorage.searchRequest ? JSON.parse(localStorage.searchRequest) : {}
     );
-  }, [firstInput]);
+  }, [firstInput, resetForm]);
 
   const handleInputChange = (evt) => {
     setVal(evt.target.value);
@@ -105,7 +113,7 @@ function SearchForm({
             ref={firstInput}
             className="movies__container_searching-input"
             placeholder="Фильм"
-            value={val.trim() || ""}
+            value={val || ""}
             onChange={handleInputChange}
             required={true}
           />

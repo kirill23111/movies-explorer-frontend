@@ -263,10 +263,10 @@ function App() {
     }
   }
 
-  function handleSaveMovie(movie) {
-    const token = localStorage.getItem("jwt");
+  function handleSaveMovie(movie) {    
+    const token = localStorage.getItem("jwt");  
     return mainApi.savedMovies(movie, token).then(() => {
-      const getSavedMovies = [...savedMovies];
+      const getSavedMovies = [...savedMovies];      
       setSavedMovies(getSavedMovies);
     });
   }

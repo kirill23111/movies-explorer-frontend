@@ -26,7 +26,7 @@ function MoviesCard({
     }
   }, [savedUserMovie]);
 
-  function handleLikeMovie() {
+  function handleLikeMovie() {    
     onSavedMovie(movie)
       .then(() => {
         setIsLikeMovie(!isLikedMovie);
@@ -37,7 +37,7 @@ function MoviesCard({
       });
   }
 
-  function handleRemoveLike() {
+  function handleRemoveLike() {    
     onDeleteMovie(savedUserMovie._id)
       .then(() => {
         setIsLikeMovie(false);

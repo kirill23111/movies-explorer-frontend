@@ -115,7 +115,7 @@ function CardList({
   const [count, setCount] = useState(4);
   const [addNextMovies, setAddNextMovies] = useState(0);
 
-  const moviesToShow = moviesList?.slice(0, count);
+  const moviesToShow = moviesList?.slice(0, (window.location.pathname === '/saved-movies' ? moviesList.length : count));
   const isShowMoreVisible = moviesList?.length > moviesToShow?.length;
 
   function showCountMovies() {
@@ -139,6 +139,7 @@ function CardList({
   }, [width]);
 
   useEffect(() => {
+    showCountMovies();
     // Reset count when moviesList changes (new search)
     if (width >= COMPUTER_DISPAY) {
       setCount(COUNT_FOR_COMPUTER);
