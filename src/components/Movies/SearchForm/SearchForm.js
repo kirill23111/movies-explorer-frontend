@@ -1,7 +1,9 @@
-import React from "react";
+// import React from "react";
+import React, { useRef, useEffect } from "react";
 
 import "../SearchForm/SearchForm.css";
 import { useLocation } from "react-router-dom";
+import {useFormWithValidation} from '../../../hooks/useForm';
 
 function SearchForm({
   search,
@@ -11,9 +13,11 @@ function SearchForm({
   handleGetMovies,
   savedMovies,
 }) {
+  const {  resetForm } = useFormWithValidation();
   const location = useLocation();
   const [errors, setErrors] = React.useState("");
   const [val, setVal] = React.useState(" ");
+  const firstInput = useRef(null);
 
   React.useEffect(() => {
     (async () => {
@@ -35,13 +39,28 @@ function SearchForm({
     if (!savedMovies?.length) {
       await handleGetSavedMovies();
       if (handleGetMovies) await handleGetMovies();
+      setErrors("");
+      // Проверка на пустое значение
+      if (!val.trim()) {
+        setErrors("Нужно ввести ключевое слово");
+        return;
+      }
+
+      setErrors("");  // Сброс ошибки
       setSearch(val);
-      localStorage.setItem("search", JSON.stringify(val));  // Добавлено сохранение в localStorage
+      // localStorage.setItem("search", JSON.stringify(val));
     } else {
-      // setErrors("");
+      // Добавлено: проверка на пустое значение
+      // if (!val.trim()) {
+      //   setErrors("Нужно ввести ключевое слово");
+      //   return;
+      // }
+
+      setErrors("");  // Сброс ошибки
+
       if (val !== " ") {
         setSearch(val);
-        localStorage.setItem("search", JSON.stringify(val));  // Добавлено сохранение в localStorage
+        localStorage.setItem("search", JSON.stringify(val));
       } else {
         if (location.pathname === "/movies") {
           setSearch(JSON.parse(localStorage.getItem("search")) || " ");
@@ -49,6 +68,14 @@ function SearchForm({
       }
     }
   };
+
+
+  React.useEffect(() => {
+    firstInput.current.focus();
+    resetForm(
+      localStorage.searchRequest ? JSON.parse(localStorage.searchRequest) : {}
+    );
+  }, [firstInput]);
 
   const handleInputChange = (evt) => {
     setVal(evt.target.value);
@@ -75,10 +102,12 @@ function SearchForm({
             </svg>
           </div>
           <input
+            ref={firstInput}
             className="movies__container_searching-input"
             placeholder="Фильм"
             value={val.trim() || ""}
             onChange={handleInputChange}
+            required={true}
           />
         </div>
 
@@ -99,7 +128,6 @@ function SearchForm({
 }
 
 export default SearchForm;
-
 
 // const handleFormSubmit = async (evt) => {
 //   evt?.preventDefault();

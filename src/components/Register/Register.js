@@ -2,6 +2,7 @@ import React from "react";
 import Authorization from "../Authorization/Authorization";
 import { useFormWithValidation } from "../../hooks/useForm";
 
+
 function Register({
   onRegister,
   isSubmitError,
@@ -9,7 +10,8 @@ function Register({
   setErrorAuth,
   isLoading,
 }) {
-  const { values, errors, handleChange, isValid } = useFormWithValidation();
+  const { values, errors, handleChange, isValid } = 
+  useFormWithValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
