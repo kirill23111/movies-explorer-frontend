@@ -79,6 +79,7 @@
 }
 
 .movies__container_filter-button {
+  border: none;
   width: 58.65px;
   padding: 8px 10.35px;
   flex-shrink: 0;

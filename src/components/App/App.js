@@ -25,7 +25,7 @@ import Login from "../Login/Login";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
-  const [allMovies, setAllMovies] = useState([]);
+  const [allMovies, setAllMovies] = useState(null);
   const [foundMovies, setFoundMovies] = useState(null);
   const [shortMovies, setShortMovies] = useState(null);
   const [savedMovies, setSavedMovies] = useState(null);
@@ -44,7 +44,7 @@ function App() {
   }, []);
 
   const saveData = useCallback(() => {
-    localStorage.setItem("search", JSON.stringify(search));
+    // localStorage.setItem("search", JSON.stringify(search));
     localStorage.setItem("isChecked", JSON.stringify(isChecked));
     localStorage.setItem("movies", JSON.stringify(foundMovies));
     search === "" ? setFirstSearch(false) : setFirstSearch(true);
@@ -171,10 +171,9 @@ function App() {
     }
   };
 
-
   useEffect(() => {
     handleGetUserMovies();
-    handleGetMovies(); // Вызываем handleGetMovies для инициализации фильмов на основе сохраненного поиска
+    // handleGetMovies(); // Вызываем handleGetMovies для инициализации фильмов на основе сохраненного поиска
   }, [loggedIn]);
 
   function handleGetUserMovies() {
@@ -190,8 +189,6 @@ function App() {
       setIsChecked(checkedUserMovies);
     }
   }
-
-
 
   function handleGetMovies() {
     if (allMovies?.length) {
@@ -256,17 +253,21 @@ function App() {
   function handleGetSavedMovies() {
     if (loggedIn) {
       const token = localStorage.getItem("jwt");
-      return mainApi.getSavedMovies(token).then((res) => {
-        setSavedMovies(res);
-        return res;
-      });
+      setIsLoading(true);
+      return mainApi
+        .getSavedMovies(token)
+        .then((res) => {
+          setSavedMovies(res);
+          return res;
+        })
+        .finally(() => setIsLoading(false));
     }
   }
 
-  function handleSaveMovie(movie) {    
-    const token = localStorage.getItem("jwt");  
+  function handleSaveMovie(movie) {
+    const token = localStorage.getItem("jwt");
     return mainApi.savedMovies(movie, token).then(() => {
-      const getSavedMovies = [...savedMovies];      
+      const getSavedMovies = [...savedMovies];
       setSavedMovies(getSavedMovies);
     });
   }
@@ -373,6 +374,7 @@ function App() {
                 onSavedMovie={handleSaveMovie}
                 onDeleteMovie={handleDeleteMovie}
                 handleGetSavedMovies={handleGetSavedMovies}
+                isLoading={isLoading}
               />
             }
           />

@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 
 import "../SearchForm/SearchForm.css";
 import { useLocation } from "react-router-dom";
-import { useFormWithValidation } from '../../../hooks/useForm';
+import { useFormWithValidation } from "../../../hooks/useForm";
 
 function SearchForm({
   search,
@@ -15,68 +15,54 @@ function SearchForm({
 }) {
   const { resetForm } = useFormWithValidation();
   const location = useLocation();
-  const [errors, setErrors] = React.useState("");
   const [val, setVal] = React.useState("");
   const firstInput = useRef(null);
   const [state, setState] = React.useState(false);
 
+  // React.useEffect(() => {
+  //   if (location.pathname === "/movies") {
+  //     localStorage.setItem("search", JSON.stringify(search));
+  //   }
+  // }, [search]);
 
   React.useEffect(() => {
     if (localStorage.getItem("search") !== "") setState(true);
-    (async () => {
-      if (localStorage.getItem("search")) {
-        if (location.pathname === "/movies") {
-          setSearch(JSON.parse(localStorage.getItem("search")));
-          setVal(JSON.parse(localStorage.getItem("search")));
-        }
+
+    if (localStorage.getItem("search")) {
+      if (location.pathname === "/movies") {
+        setSearch(JSON.parse(localStorage.getItem("search")));
+        setVal(JSON.parse(localStorage.getItem("search")));
       }
-      setTimeout(() => {
-        handleFormSubmit();
-      }, 100);
-    })();
+      // setTimeout(() => {
+      //   handleFormSubmit();
+      // }, 100);
+    }
   }, [location, setSearch]);
 
   const handleFormSubmit = async (evt) => {
+    if (val.trim() === "") {
+      // Если инпут пуст, не выполнять запрос к бэкенду
+      return;
+    }
+  
     evt?.preventDefault();
-
+  
+    localStorage.setItem("search", JSON.stringify(val));
+  
     if (!savedMovies?.length) {
       await handleGetSavedMovies();
       if (handleGetMovies) await handleGetMovies();
-      setErrors("");
-      // Проверка на пустое значение 
+  
+      // Проверка на пустое значение
       if (!state) {
-        setErrors("");
-        return;
-      }     
-      if (val === "" || val === " ") {        
-        setErrors("Нужно ввести ключевое слово");
         return;
       }
-
-      setErrors("");  // Сброс ошибки
+      
       setSearch(val);
-      // localStorage.setItem("search", JSON.stringify(val));
     } else {
-      // Добавлено: проверка на пустое значение
-      // if (!val.trim()) {
-      //   setErrors("Нужно ввести ключевое слово");
-      //   return;
-      // }
-
-      setErrors("");  // Сброс ошибки
-
-      if (val !== "") {
-        setSearch(val);
-        localStorage.setItem("search", JSON.stringify(val));
-      } else {
-        if (location.pathname === "/movies") {
-          setSearch(JSON.parse(localStorage.getItem("search")) || "");
-          setErrors("Нужно ввести ключевое слово");
-        }
-      }
+      setSearch(val);
     }
   };
-
 
   React.useEffect(() => {
     firstInput.current.focus();
@@ -91,7 +77,7 @@ function SearchForm({
 
   return (
     <div className="movies__container_search">
-      <div className="movies__container_search-block">
+      <form className="movies__container_search-block">
         <div className="movies__container_searching">
           <div className="movies__container_search-icon">
             <svg
@@ -115,22 +101,22 @@ function SearchForm({
             placeholder="Фильм"
             value={val || ""}
             onChange={handleInputChange}
-            required={true}
+            required
           />
         </div>
 
         <div className="movies__container_filter">
-          <div
+          <button
+            type="submit"
             onClick={handleFormSubmit}
             className="movies__container_filter-button"
           >
             <p className="movies__container_filter-button-text">Найти</p>
-          </div>
+          </button>
           <div className="movies__container_filter-line" />
           <div className="movies__container_filter-box">{children}</div>
         </div>
-      </div>
-      <p className="movies__input-error">{errors}</p>
+      </form>
     </div>
   );
 }

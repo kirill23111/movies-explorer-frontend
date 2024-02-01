@@ -3,6 +3,7 @@ import { MOVIE_IMAGE_PATH, HOUR } from "../../../utils/constants";
 
 import "../MoviesCard/MoviesCard.css";
 import { useLocation } from "react-router-dom";
+import useWindowSize from "../../../hooks/useWindowSize";
 
 function MoviesCard({
   movie,
@@ -14,6 +15,7 @@ function MoviesCard({
   handleGetSavedMovies,
 }) {
   const { pathname } = useLocation();
+  const width = useWindowSize();
   const [isLikedMovie, setIsLikeMovie] = useState(false);
   const [isEntering, setIsEntering] = useState(false);
   const savedUserMovie = savedMovies?.find((i) => i.nameRU === movie.nameRU);
@@ -26,7 +28,7 @@ function MoviesCard({
     }
   }, [savedUserMovie]);
 
-  function handleLikeMovie() {    
+  function handleLikeMovie() {
     onSavedMovie(movie)
       .then(() => {
         setIsLikeMovie(!isLikedMovie);
@@ -37,7 +39,7 @@ function MoviesCard({
       });
   }
 
-  function handleRemoveLike() {    
+  function handleRemoveLike() {
     onDeleteMovie(savedUserMovie._id)
       .then(() => {
         setIsLikeMovie(false);
@@ -89,7 +91,7 @@ function MoviesCard({
             <>
               {isLikedMovie ? (
                 <div className="movies__liked" onClick={handleRemoveLike}>
-                  {pathname === "/movies" && (
+                  {pathname === "/movies" && width > 800 && (
                     <svg
                       width="24"
                       height="24"

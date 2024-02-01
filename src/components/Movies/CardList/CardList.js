@@ -114,8 +114,11 @@ function CardList({
   const width = useWindowSize();
   const [count, setCount] = useState(4);
   const [addNextMovies, setAddNextMovies] = useState(0);
-
-  const moviesToShow = moviesList?.slice(0, (window.location.pathname === '/saved-movies' ? moviesList.length : count));
+  console.log({ moviesList });
+  const moviesToShow = moviesList?.slice(
+    0,
+    window.location.pathname === "/saved-movies" ? moviesList.length : count
+  );
   const isShowMoreVisible = moviesList?.length > moviesToShow?.length;
 
   function showCountMovies() {
@@ -160,7 +163,7 @@ function CardList({
     showCountMovies();
     setCount(count + addNextMovies);
   }
-
+  console.log(isLoading);
   return (
     <section className="moviesList">
       <div className="movies__container_films-table">
@@ -179,9 +182,12 @@ function CardList({
             />
           );
         })}
-        {!isSearchEmtpy && !isLoading && !moviesToShow?.length && (
-          <p className="nothing-found">Ничего не найдено</p>
-        )}
+        {!isSearchEmtpy &&
+          !isLoading &&
+          !moviesToShow?.length &&
+          moviesList !== null && (
+            <p className="nothing-found">Ничего не найдено</p>
+          )}
       </div>
       {isShowMoreVisible && showMoreBtn && (
         <MoviesAddition handleAddMovies={handleAddMovies} />

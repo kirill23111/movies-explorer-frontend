@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FilterCheckbox from "../Movies/SearchForm/FilterCheckbox/FilterCheckbox";
 import CardList from "../Movies/CardList/CardList";
 import { DURATION_SHORT_MOVIE } from "../../utils/constants";
@@ -23,6 +23,7 @@ function SavedMovies({
   onDeleteMovie,
   savedMovies,
   handleGetSavedMovies,
+  isLoading,
 }) {
   const [isCheckedQuery, setIsCheckedQuery] = useState(false);
   const [searchSavedMovie, setSearchSavedMovie] = useState("");
@@ -33,6 +34,10 @@ function SavedMovies({
   const filteredMoviesList = isCheckedQuery
     ? filterMovieList(getShortMovies(moviesList), searchSavedMovie.trim())
     : filterMovieList(moviesList, searchSavedMovie.trim());
+
+  useEffect(() => {
+    handleGetSavedMovies();
+  }, []);
 
   return (
     <main className="movies">
@@ -45,6 +50,7 @@ function SavedMovies({
         savedMovies={savedMovies}
       ></FilterCheckbox>
       <CardList
+        isLoading={isLoading}
         savedMovies={savedMovies}
         moviesList={filteredMoviesList}
         isSearchEmtpy={isSearchEmpty}
