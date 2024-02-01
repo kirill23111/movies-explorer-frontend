@@ -91,7 +91,7 @@ function MoviesCard({
             <>
               {isLikedMovie ? (
                 <div className="movies__liked" onClick={handleRemoveLike}>
-                  {pathname === "/movies" && width > 800 && (
+                  {pathname === "/movies" && (
                     <svg
                       width="24"
                       height="24"
