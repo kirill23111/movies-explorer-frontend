@@ -39,12 +39,11 @@ function Movies({
     ? isChecked
       ? filterMovies(getShortMovies(allMovies), search)
       : filterMovies(allMovies, search)
-    : null;
+    : null
   const movies = isSearchEmtpy ? [] : moviesList;
 
   useEffect(() => {
     // if (!allMovies?.length) handleGetMovies();
-
     return () => {
       setSearch("");
     };

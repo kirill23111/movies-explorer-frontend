@@ -122,28 +122,3 @@ function SearchForm({
 }
 
 export default SearchForm;
-
-// const handleFormSubmit = async (evt) => {
-//   evt?.preventDefault();
-
-//   if (!savedMovies?.length) {
-//     await handleGetSavedMovies();
-//     if (handleGetMovies) await handleGetMovies();
-//     setSearch(val);
-//     localStorage.setItem("search", JSON.stringify(val));  // Добавлено сохранение в localStorage
-//   } else {
-//     if (!search) {
-//       setErrors("Нужно ввести ключевое слово");
-//       return;
-//     }
-//     setErrors("");
-//     if (val !== " ") {
-//       setSearch(val);
-//       localStorage.setItem("search", JSON.stringify(val));  // Добавлено сохранение в localStorage
-//     } else {
-//       if (location.pathname === "/movies") {
-//         setSearch(JSON.parse(localStorage.getItem("search")) || " ");
-//       }
-//     }
-//   }
-// };

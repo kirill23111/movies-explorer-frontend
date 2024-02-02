@@ -15,7 +15,6 @@ function MoviesCard({
   handleGetSavedMovies,
 }) {
   const { pathname } = useLocation();
-  const width = useWindowSize();
   const [isLikedMovie, setIsLikeMovie] = useState(false);
   const [isEntering, setIsEntering] = useState(false);
   const savedUserMovie = savedMovies?.find((i) => i.nameRU === movie.nameRU);
@@ -49,7 +48,7 @@ function MoviesCard({
         console.log(err);
       });
   }
-
+  
   function handleDeleteMovie() {
     onDeleteMovie(movie._id)
       .then(() => {
@@ -80,13 +79,14 @@ function MoviesCard({
             src={
               movie.image.url ? MOVIE_IMAGE_PATH + movie.image.url : movie.image
             }
+            style={{ width: '100%', objectFit: 'cover' }}
             alt="Фильм"
           />
         </a>
         <div className="movies__container_films-title-box">
           <p className="movies__container_films-container-title">
             {movie.nameRU}
-          </p>
+          </p>          
           {(pathname === "/movies" || isEntering) && (
             <>
               {isLikedMovie ? (
@@ -125,6 +125,7 @@ function MoviesCard({
               )}
             </>
           )}
+          {pathname !== '/movies' && <div className="movies__liked-mobile" onClick={handleRemoveLike}></div>}
         </div>
         <div className="movies__container_films-container-time">
           <div className="movies__container_films-divider" />

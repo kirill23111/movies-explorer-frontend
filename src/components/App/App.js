@@ -54,8 +54,11 @@ function App() {
     window.addEventListener("beforeunload", saveData);
   }, [saveData]);
 
-  useEffect(() => {
-    if (loggedIn) handleGetUserMovies();
+  useEffect(() => {     
+    if (loggedIn) {
+      handleGetUserMovies();      
+    }
+
   }, [loggedIn]);
 
   function handleLogin({ email, password }) {
@@ -163,18 +166,14 @@ function App() {
     const foundUserMovies = movies.filter((movie) => {
       return movie.nameRU.toLowerCase().includes(search.toLowerCase());
     });
-    if (foundUserMovies.length) {
+    if (foundUserMovies.length) {      
       setFoundMovies(foundUserMovies);
+      setAllMovies(foundUserMovies);      
     } else {
-      setFoundMovies(null);
+      setFoundMovies(null);      
       setAllMovies(allMovies);
     }
   };
-
-  useEffect(() => {
-    handleGetUserMovies();
-    // handleGetMovies(); // Вызываем handleGetMovies для инициализации фильмов на основе сохраненного поиска
-  }, [loggedIn]);
 
   function handleGetUserMovies() {
     const searchUserMovies = localStorage.getItem("search");
@@ -191,16 +190,16 @@ function App() {
   }
 
   function handleGetMovies() {
-    if (allMovies?.length) {
+    if (allMovies?.length) {      
       return handleSetFoundMovies(allMovies);
     }
 
     setIsLoading(true);
     return api
       .getAllMovies()
-      .then((res) => {
+      .then((res) => {        
         setAllMovies(res);
-        handleSetFoundMovies(res);
+        handleSetFoundMovies(res);        
       })
       .catch((err) => {
         console.log(err);
@@ -209,19 +208,6 @@ function App() {
       .finally(() => {
         setIsLoading(false);
       });
-  }
-
-  function handleGetUserMovies() {
-    const searchUserMovies = localStorage.getItem("search");
-    if (searchUserMovies) {
-      const searchMovies = JSON.parse(searchUserMovies);
-      setSearch(searchMovies);
-    }
-    const checkedMovies = localStorage.getItem("isChecked");
-    if (checkedMovies) {
-      const checkedUserMovies = JSON.parse(checkedMovies);
-      setIsChecked(checkedUserMovies);
-    }
   }
 
   function handleCetShortMovies() {
