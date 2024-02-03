@@ -47,6 +47,9 @@ function SearchForm({
 
     evt?.preventDefault();
 
+    localStorage.setItem("search", JSON.stringify(val));
+
+
     if (location === "/movies")
       localStorage.setItem("search", JSON.stringify(val));
 
