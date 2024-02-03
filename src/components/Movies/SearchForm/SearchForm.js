@@ -44,27 +44,30 @@ function SearchForm({
       // Если инпут пуст, не выполнять запрос к бэкенду
       return;
     }
-
+  
     evt?.preventDefault();
-
-    localStorage.setItem("search", JSON.stringify(val));
-
-
-    if (location === "/movies")
+  
+    if (window.location.pathname === "/movies") {
+      // Если находимся на странице "/movies", сохраняем значение поиска в локальное хранилище
       localStorage.setItem("search", JSON.stringify(val));
-
-    if (!savedMovies?.length) {
-      await handleGetSavedMovies();
-      if (handleGetMovies) await handleGetMovies();
-
-      // Проверка на пустое значение
-      if (!state) {
-        return;
+    }
+  
+    try {
+      if (!savedMovies?.length) {
+        await handleGetSavedMovies();
+        if (handleGetMovies) await handleGetMovies();
+  
+        // Проверка на пустое значение
+        if (!state) {
+          return;
+        }
+  
+        setSearch(val);
+      } else {
+        setSearch(val);
       }
-
-      setSearch(val);
-    } else {
-      setSearch(val);
+    } catch (error) {
+      console.error("Ошибка при выполнении запроса или обработке данных:", error);
     }
   };
 
