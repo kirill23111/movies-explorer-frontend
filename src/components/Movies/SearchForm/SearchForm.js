@@ -44,20 +44,21 @@ function SearchForm({
       // Если инпут пуст, не выполнять запрос к бэкенду
       return;
     }
-  
+
     evt?.preventDefault();
-  
-    localStorage.setItem("search", JSON.stringify(val));
-  
+
+    if (location === "/movies")
+      localStorage.setItem("search", JSON.stringify(val));
+
     if (!savedMovies?.length) {
       await handleGetSavedMovies();
       if (handleGetMovies) await handleGetMovies();
-  
+
       // Проверка на пустое значение
       if (!state) {
         return;
       }
-      
+
       setSearch(val);
     } else {
       setSearch(val);

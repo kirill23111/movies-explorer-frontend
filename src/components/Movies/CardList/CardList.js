@@ -114,12 +114,14 @@ function CardList({
   const width = useWindowSize();
   const [count, setCount] = useState(4);
   const [addNextMovies, setAddNextMovies] = useState(0);
-  
+
   const moviesToShow = moviesList?.slice(
     0,
     window.location.pathname === "/saved-movies" ? moviesList.length : count
   );
   const isShowMoreVisible = moviesList?.length > moviesToShow?.length;
+
+  console.log({ moviesToShow });
 
   function showCountMovies() {
     if (width >= COMPUTER_DISPAY) {
@@ -143,7 +145,7 @@ function CardList({
 
   useEffect(() => {
     showCountMovies();
-    console.log(localStorage.getItem('movies'))
+    console.log(localStorage.getItem("movies"));
     // Reset count when moviesList changes (new search)
     if (width >= COMPUTER_DISPAY) {
       setCount(COUNT_FOR_COMPUTER);
@@ -163,7 +165,7 @@ function CardList({
   function handleAddMovies() {
     showCountMovies();
     setCount(count + addNextMovies);
-  } 
+  }
   return (
     <section className="moviesList">
       <div className="movies__container_films-table">

@@ -288,9 +288,9 @@
     min-height: 100vh;
     gap: 45px;
   }
-  .movies__liked{
+  /* .movies__liked{
     display: none;
-  }
+  } */
 
   .movies__liked-mobile {
     display: block;

@@ -39,8 +39,14 @@ function Movies({
     ? isChecked
       ? filterMovies(getShortMovies(allMovies), search)
       : filterMovies(allMovies, search)
-    : null
+    : JSON.parse(localStorage.getItem("searchedMovies")) || null;
   const movies = isSearchEmtpy ? [] : moviesList;
+
+  console.log({
+    movies,
+    moviesList,
+    saved: localStorage.getItem("searchedMovies"),
+  });
 
   useEffect(() => {
     // if (!allMovies?.length) handleGetMovies();
@@ -49,6 +55,17 @@ function Movies({
     };
   }, []);
 
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      localStorage.setItem('searchedMovies', JSON.stringify(movies));
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [movies]);
   // console.log({search, movies, allMovies})
   return (
     <main className="movies">
