@@ -88,6 +88,7 @@ function Movies({
         isLoading={isLoading}
         isChecked={isChecked}
         isInfoPopupOpen={isInfoPopupOpen}
+        search={search}
         onSavedMovie={onSavedMovie}
         onDeleteMovie={onDeleteMovie}
         savedMovies={savedMovies}

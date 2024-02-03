@@ -6,19 +6,19 @@ import { useLocation } from "react-router-dom";
 import { useFormWithValidation } from "../../../hooks/useForm";
 
 function SearchForm({
-  search,
   setSearch,
   children,
   handleGetSavedMovies,
   handleGetMovies,
   savedMovies,
-  allMovies,
+  allMovies
 }) {
   const { resetForm } = useFormWithValidation();
   const location = useLocation();
   const [val, setVal] = React.useState("");
   const firstInput = useRef(null);
   const [state, setState] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState("");
 
   // React.useEffect(() => {
   //   if (location.pathname === "/movies") {
@@ -40,26 +40,53 @@ function SearchForm({
     }
   }, [location, setSearch]);
 
+  // const handleFormSubmit = async (evt) => {
+  //   if (val.trim() === "") {
+  //     // Если инпут пуст, не выполнять запрос к бэкенду
+  //     return;
+  //   }
+
+  //   evt?.preventDefault();
+
+  //   if (location.pathname === "/movies")
+  //     localStorage.setItem("search", JSON.stringify(val));
+
+  //   if (!savedMovies?.length || !allMovies?.length) {
+  //     await handleGetSavedMovies();
+  //     if (handleGetMovies) await handleGetMovies();
+
+  //     // Проверка на пустое значение
+  //     if (!state) {
+  //       return;
+  //     }
+
+  //     setSearch(val);
+  //   } else {
+  //     setSearch(val);
+  //   }
+  // };
   const handleFormSubmit = async (evt) => {
+    evt?.preventDefault();
+  
     if (val.trim() === "") {
-      // Если инпут пуст, не выполнять запрос к бэкенду
+      setErrorMessage("Нужно ввести ключевое слово");
       return;
     }
-
-    evt?.preventDefault();
-
+  
+    setErrorMessage(""); // Очищаем сообщение об ошибке
+  
     if (location.pathname === "/movies")
       localStorage.setItem("search", JSON.stringify(val));
-
+  
     if (!savedMovies?.length || !allMovies?.length) {
       await handleGetSavedMovies();
       if (handleGetMovies) await handleGetMovies();
-
+  
       // Проверка на пустое значение
       if (!state) {
         return;
       }
-
+  
       setSearch(val);
     } else {
       setSearch(val);
@@ -79,6 +106,7 @@ function SearchForm({
 
   return (
     <div className="movies__container_search">
+    {errorMessage && <p className="error-message">{errorMessage}</p>}
       <form className="movies__container_search-block">
         <div className="movies__container_searching">
           <div className="movies__container_search-icon">

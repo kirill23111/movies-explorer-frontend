@@ -23,7 +23,7 @@ function SavedMovies({
   onDeleteMovie,
   savedMovies,
   handleGetSavedMovies,
-  isLoading,
+  isLoading
 }) {
   const [isCheckedQuery, setIsCheckedQuery] = useState(false);
   const [searchSavedMovie, setSearchSavedMovie] = useState("");

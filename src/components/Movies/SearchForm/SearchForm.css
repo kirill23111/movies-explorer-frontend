@@ -38,6 +38,12 @@
   outline: none;
 }
 
+.error-message {
+  color: red;
+  margin-top: 5px; 
+  font-size: 14px;
+}
+
 .searchForm__button-sbt {
   margin: 0;
   border: none;

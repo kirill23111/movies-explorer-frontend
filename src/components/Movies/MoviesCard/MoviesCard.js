@@ -4,6 +4,7 @@ import { MOVIE_IMAGE_PATH, HOUR } from "../../../utils/constants";
 import "../MoviesCard/MoviesCard.css";
 import { useLocation } from "react-router-dom";
 import useWindowSize from "../../../hooks/useWindowSize";
+import userEvent from "@testing-library/user-event";
 
 function MoviesCard({
   movie,
@@ -17,9 +18,14 @@ function MoviesCard({
   const { pathname } = useLocation();
   const [isLikedMovie, setIsLikeMovie] = useState(false);
   const [isEntering, setIsEntering] = useState(false);
-  const savedUserMovie = savedMovies?.find((i) => i.nameRU === movie.nameRU);
+  const [savedUserMovie, setSavedUserMovie] = useState(null)
+  // const savedUserMovie = savedMovies?.find((i) => i.nameRU === movie.nameRU);
   const hours = Math.floor(movie.duration / HOUR);
   const minutes = Math.floor(movie.duration % HOUR);
+
+  useEffect(() => {
+    setSavedUserMovie(savedMovies?.find((i) => i.nameRU === movie.nameRU));
+  }, [ savedMovies ]);
 
   useEffect(() => {
     if (savedUserMovie) {
@@ -29,9 +35,9 @@ function MoviesCard({
 
   function handleLikeMovie() {
     onSavedMovie(movie)
-      .then(() => {
+      .then((res) => {
         setIsLikeMovie(!isLikedMovie);
-        handleGetSavedMovies();
+        // handleGetSavedMovies();
       })
       .catch((err) => {
         console.log(err);
@@ -39,6 +45,8 @@ function MoviesCard({
   }
 
   function handleRemoveLike() {
+    const savedUserMovie = savedMovies?.find((i) => i.nameRU === movie.nameRU);
+
     onDeleteMovie(savedUserMovie._id)
       .then(() => {
         setIsLikeMovie(false);
@@ -139,3 +147,4 @@ function MoviesCard({
 }
 
 export default MoviesCard;
+

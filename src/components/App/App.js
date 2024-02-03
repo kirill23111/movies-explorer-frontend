@@ -239,22 +239,18 @@ function App() {
   function handleGetSavedMovies() {
     if (loggedIn) {
       const token = localStorage.getItem("jwt");
-      setIsLoading(true);
-      return mainApi
-        .getSavedMovies(token)
-        .then((res) => {
-          setSavedMovies(res);
-          return res;
-        })
-        .finally(() => setIsLoading(false));
+      return mainApi.getSavedMovies(token).then((res) => {
+        setSavedMovies(res);
+        return res;
+      });
     }
   }
 
   function handleSaveMovie(movie) {
     const token = localStorage.getItem("jwt");
-    return mainApi.savedMovies(movie, token).then(() => {
-      const getSavedMovies = [...savedMovies];
-      setSavedMovies(getSavedMovies);
+    return mainApi.savedMovies(movie, token).then((savedMovie) => {
+      const localSavedMovies = [...savedMovies, savedMovie];
+      setSavedMovies(localSavedMovies);
     });
   }
 
@@ -357,7 +353,7 @@ function App() {
                 savedMovies={savedMovies}
                 setSavedMovies={setSavedMovies}
                 isInfoPopupOpen={isInfoPopupOpen}
-                onSavedMovie={handleSaveMovie}
+                onSavedMovie={handleSaveMovie}  
                 onDeleteMovie={handleDeleteMovie}
                 handleGetSavedMovies={handleGetSavedMovies}
                 isLoading={isLoading}
