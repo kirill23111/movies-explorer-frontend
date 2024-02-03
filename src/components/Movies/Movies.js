@@ -42,12 +42,6 @@ function Movies({
     : JSON.parse(localStorage.getItem("searchedMovies")) || null;
   const movies = isSearchEmtpy ? [] : moviesList;
 
-  console.log({
-    movies,
-    moviesList,
-    saved: localStorage.getItem("searchedMovies"),
-  });
-
   useEffect(() => {
     // if (!allMovies?.length) handleGetMovies();
     return () => {
@@ -56,20 +50,27 @@ function Movies({
   }, []);
 
   useEffect(() => {
+    if (localStorage.getItem("searchedMovies")) {
+      handleGetSavedMovies();
+    }
+  }, []);
+
+  useEffect(() => {
     const handleBeforeUnload = () => {
-      localStorage.setItem('searchedMovies', JSON.stringify(movies));
+      localStorage.setItem("searchedMovies", JSON.stringify(movies));
     };
 
-    window.addEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener("beforeunload", handleBeforeUnload);
 
     return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, [movies]);
   // console.log({search, movies, allMovies})
   return (
     <main className="movies">
       <FilterCheckbox
+        allMovies={allMovies}
         isChecked={isChecked}
         setIsChecked={setIsChecked}
         handleSearchMovies={handleSearchMovies}

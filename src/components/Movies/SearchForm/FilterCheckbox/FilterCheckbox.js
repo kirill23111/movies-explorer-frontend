@@ -11,6 +11,7 @@ function FilterCheckbox({
   handleGetSavedMovies,
   handleGetMovies,
   savedMovies,
+  allMovies,
 }) {
   function handleChangeCheckbox() {
     setIsChecked(!isChecked);
@@ -23,6 +24,7 @@ function FilterCheckbox({
       handleGetSavedMovies={handleGetSavedMovies}
       handleGetMovies={handleGetMovies}
       isChecked={isChecked}
+      allMovies={allMovies}
       savedMovies={savedMovies}
     >
       <div onClick={handleChangeCheckbox}>
