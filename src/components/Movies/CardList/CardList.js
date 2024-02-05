@@ -10,6 +10,8 @@ import {
   COUNT_FOR_COMPUTER,
   COUNT_FOR_TABLET,
 } from "../../../utils/constants";
+import { useLocation } from "react-router-dom";
+
 
 function CardList({
   moviesList,
@@ -28,12 +30,14 @@ function CardList({
   const [count, setCount] = useState(null);
   const [addNextMovies, setAddNextMovies] = useState(0);
   const [likedMovies, setLikedMovies] = useState([]);
+  const location = useLocation();
 
   const moviesToShow = moviesList?.slice(
     0,
-    window.location.pathname === "/saved-movies" ? moviesList.length : count
+    location.pathname === "/saved-movies" ? moviesList.length : count,
   );
   const isShowMoreVisible = moviesList?.length > moviesToShow?.length;
+
 
   function setCountMovies(settedCountMovies) {
     if (count === null) {
@@ -125,7 +129,8 @@ function CardList({
             <p className="nothing-found">Ничего не найдено</p>
           )}
       </div>
-      {isShowMoreVisible && moviesList?.length > count && showMoreBtn && (
+      {/* {isShowMoreVisible && moviesList?.length > count && showMoreBtn && ( */}
+      {isShowMoreVisible && showMoreBtn && (
         <MoviesAddition handleAddMovies={handleAddMovies} />
       )}
     </section>

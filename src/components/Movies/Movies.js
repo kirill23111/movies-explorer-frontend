@@ -3,7 +3,7 @@ import CardList from "../Movies/CardList/CardList";
 import { DURATION_SHORT_MOVIE } from "../../utils/constants";
 
 import "../Movies/Movies.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const getShortMovies = (movies) => {
   return movies?.filter((movie) => {
@@ -29,26 +29,27 @@ function Movies({
   isInfoPopupOpen,
   onMovieLike,
   onSavedMovie,
-  onDeleteMovie,
-  savedMovies,
   firstSearch,
+  onDeleteMovie,
+  setFirstSearch,
+  savedMovies,
   handleGetMovies,
 }) {
-
   const isSearchEmtpy = !search.trim();
   const moviesList = allMovies
     ? isChecked
       ? filterMovies(getShortMovies(allMovies), search)
       : filterMovies(allMovies, search)
-    : JSON.parse(localStorage.getItem("searchedMovies")) || null;
+      : JSON.parse(localStorage.getItem("searchedMovies")) || null;
   const movies = isSearchEmtpy ? [] : moviesList;
 
   useEffect(() => {
-    if (!allMovies?.length) handleGetMovies();
+    if (!allMovies) handleGetMovies();
     return () => {
       setSearch("");
     };
   }, []);
+
 
   useEffect(() => {
     if (localStorage.getItem("searchedMovies")) {
@@ -81,6 +82,8 @@ function Movies({
         handleShortMovies={handleShortMovies}
         handleGetSavedMovies={handleGetSavedMovies}
         handleGetMovies={handleGetMovies}
+        firstSearch={firstSearch}
+        setFirstSearch={setFirstSearch}
         savedMovies={savedMovies}
       ></FilterCheckbox>
       <CardList

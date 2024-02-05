@@ -36,17 +36,17 @@ function SearchForm({
 
   const handleFormSubmit = async (evt) => {
     evt?.preventDefault();
-  
+
     if (val.trim() === "") {
       setErrorMessage("Нужно ввести ключевое слово");
       return;
     }
   
     setErrorMessage(""); // Очищаем сообщение об ошибке
-  
+    
     if (location.pathname === "/movies")
       localStorage.setItem("search", JSON.stringify(val));
-  
+
     if (!savedMovies?.length || !allMovies?.length) {
       await handleGetSavedMovies();
       if (handleGetMovies) await handleGetMovies();
