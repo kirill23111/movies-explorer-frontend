@@ -44,7 +44,7 @@ function Movies({
   const movies = isSearchEmtpy ? [] : moviesList;
 
   useEffect(() => {
-    if (!allMovies?.length) handleGetMovies();
+    // if (!allMovies?.length) handleGetMovies();
     return () => {
       setSearch("");
     };
