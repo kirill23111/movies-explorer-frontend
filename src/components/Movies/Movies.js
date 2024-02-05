@@ -3,8 +3,7 @@ import CardList from "../Movies/CardList/CardList";
 import { DURATION_SHORT_MOVIE } from "../../utils/constants";
 
 import "../Movies/Movies.css";
-import { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const getShortMovies = (movies) => {
   return movies?.filter((movie) => {
