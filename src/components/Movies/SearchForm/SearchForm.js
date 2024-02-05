@@ -20,12 +20,6 @@ function SearchForm({
   const [state, setState] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState("");
 
-  // React.useEffect(() => {
-  //   if (location.pathname === "/movies") {
-  //     localStorage.setItem("search", JSON.stringify(search));
-  //   }
-  // }, [search]);
-
   React.useEffect(() => {
     if (localStorage.getItem("search") !== "") setState(true);
 
@@ -40,31 +34,6 @@ function SearchForm({
     }
   }, [location, setSearch]);
 
-  // const handleFormSubmit = async (evt) => {
-  //   if (val.trim() === "") {
-  //     // Если инпут пуст, не выполнять запрос к бэкенду
-  //     return;
-  //   }
-
-  //   evt?.preventDefault();
-
-  //   if (location.pathname === "/movies")
-  //     localStorage.setItem("search", JSON.stringify(val));
-
-  //   if (!savedMovies?.length || !allMovies?.length) {
-  //     await handleGetSavedMovies();
-  //     if (handleGetMovies) await handleGetMovies();
-
-  //     // Проверка на пустое значение
-  //     if (!state) {
-  //       return;
-  //     }
-
-  //     setSearch(val);
-  //   } else {
-  //     setSearch(val);
-  //   }
-  // };
   const handleFormSubmit = async (evt) => {
     evt?.preventDefault();
   

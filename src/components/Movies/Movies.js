@@ -3,7 +3,8 @@ import CardList from "../Movies/CardList/CardList";
 import { DURATION_SHORT_MOVIE } from "../../utils/constants";
 
 import "../Movies/Movies.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const getShortMovies = (movies) => {
   return movies?.filter((movie) => {
@@ -34,6 +35,7 @@ function Movies({
   firstSearch,
   handleGetMovies,
 }) {
+
   const isSearchEmtpy = !search.trim();
   const moviesList = allMovies
     ? isChecked
@@ -43,7 +45,7 @@ function Movies({
   const movies = isSearchEmtpy ? [] : moviesList;
 
   useEffect(() => {
-    // if (!allMovies?.length) handleGetMovies();
+    if (!allMovies?.length) handleGetMovies();
     return () => {
       setSearch("");
     };
@@ -66,6 +68,7 @@ function Movies({
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, [movies]);
+
   // console.log({search, movies, allMovies})
   return (
     <main className="movies">
