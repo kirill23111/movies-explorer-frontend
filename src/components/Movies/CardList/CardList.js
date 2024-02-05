@@ -13,6 +13,7 @@ import {
 import { useLocation } from "react-router-dom";
 
 
+
 function CardList({
   moviesList,
   onMovieLike,
@@ -32,12 +33,12 @@ function CardList({
   const [likedMovies, setLikedMovies] = useState([]);
   const location = useLocation();
 
+
   const moviesToShow = moviesList?.slice(
     0,
-    location.pathname === "/saved-movies" ? moviesList.length : count,
+    window.location.pathname === "/saved-movies" ? moviesList.length : count
   );
   const isShowMoreVisible = moviesList?.length > moviesToShow?.length;
-
 
   function setCountMovies(settedCountMovies) {
     if (count === null) {
@@ -47,7 +48,7 @@ function CardList({
       setAddNextMovies(defaultCountMovies.addNextMovies);
       return;
     }
-
+    
     setCount(count + settedCountMovies);
   }
 
@@ -80,7 +81,6 @@ function CardList({
         addNextMovies: 2
       };
     }
-
     // defaultValue
     return {
       count: 5,
@@ -93,43 +93,49 @@ function CardList({
   }, []);
 
   useEffect(() => {
-    setDefaultMovies();
+     setDefaultMovies();
   }, [ search ]);
 
   useEffect(() => {
-    setCountMovies(0);
+     setCountMovies(0);
   }, [width]);
-
 
   function handleAddMovies() {
     setCountMovies(addNextMovies);
   }
+  useEffect(() => {
+    getDefaultCountMovies();
+  }, [width]);
+
+  useEffect(() => {
+    getDefaultCountMovies();
+  }, [moviesList, width]);
 
   return (
     <section className="moviesList">
       <div className="movies__container_films-table">
         <Preloader isLoading={isLoading} />
-        {moviesList?.slice(0, count)?.map((movie) => (
-          <MoviesCard
-            key={movie.id || movie._id}
-            movie={movie}
-            handleGetSavedMovies={handleGetSavedMovies}
-            onMovieLike={onMovieLike}
-            onSavedMovie={onSavedMovie}
-            onDeleteMovie={onDeleteMovie}
-            savedMovies={savedMovies}
-            search={search}
-            {...cardProps}
-          />
-        ))}
+        {moviesToShow?.map((movie) => {
+          return (
+            <MoviesCard
+              key={movie.id || movie._id}
+              movie={movie}
+              handleGetSavedMovies={handleGetSavedMovies}
+              onMovieLike={onMovieLike}
+              onSavedMovie={onSavedMovie}
+              onDeleteMovie={onDeleteMovie}
+              savedMovies={savedMovies}
+              {...cardProps}
+            />
+          );
+        })}
         {!isSearchEmtpy &&
           !isLoading &&
-          !moviesList?.slice(0, count)?.length &&
+          !moviesToShow?.length &&
           moviesList !== null && (
             <p className="nothing-found">Ничего не найдено</p>
           )}
       </div>
-      {/* {isShowMoreVisible && moviesList?.length > count && showMoreBtn && ( */}
       {isShowMoreVisible && showMoreBtn && (
         <MoviesAddition handleAddMovies={handleAddMovies} />
       )}
@@ -138,3 +144,4 @@ function CardList({
 }
 
 export default CardList;
+
