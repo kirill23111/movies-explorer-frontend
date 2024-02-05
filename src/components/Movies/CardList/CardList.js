@@ -125,7 +125,7 @@ function CardList({
             <p className="nothing-found">Ничего не найдено</p>
           )}
       </div>
-      {moviesList?.length > count && showMoreBtn && (
+      {isShowMoreVisible && moviesList?.length > count && showMoreBtn && (
         <MoviesAddition handleAddMovies={handleAddMovies} />
       )}
     </section>
